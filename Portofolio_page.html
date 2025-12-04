@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ammar – Home</title>
+
+  <style>
+    :root {
+      --light-bg: #f5f5f5;
+      --light-text: #111;
+      --dark-bg: #121212;
+      --dark-text: #f1f1f1;
+      --accent: #4b9fe1;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #1e1e1e;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #f5f5f5, #eaeaea);
+      color: var(--light-text);
+      transition: 0.3s;
+    }
+
+    body.dark {
+      background: linear-gradient(to bottom, #121212, #1b1b1b);
+      color: var(--dark-text);
+    }
+
+    /* HEADER */
+    header {
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(6px);
+      z-index: 10;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .toggle-btn {
+      padding: 10px 18px;
+      background: var(--accent);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      transition: 0.2s;
+    }
+
+    .toggle-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* MAIN HEADER */
+    h1 {
+      margin-top: 70px;
+      text-align: center;
+      font-size: 42px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 18px;
+      opacity: 0.8;
+    }
+
+    /* CONTENT GRID - 2 columns */
+    .content-section {
+      max-width: 900px;
+      margin: 60px auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    /* CARD DESIGN */
+    .card {
+      padding: 25px;
+      border-radius: 14px;
+      background: var(--card-bg-light);
+      transition: 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    body.dark .card {
+      background: var(--card-bg-dark);
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p {
+      opacity: 0.7;
+      line-height: 1.5;
+      margin-top: 8px;
+    }
+
+    /* MODAL PREVIEW */
+    #modalContainer {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #modalContainer.show {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-box {
+      width: 85%;
+      height: 85%;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+
+    #modalContainer.show .modal-box {
+      transform: scale(1);
+    }
+
+    body.dark .modal-box {
+      background: #1e1e1e;
+    }
+
+    iframe {
+      width: 100%;
+      height: calc(100% - 60px);
+      border: none;
+    }
+
+    .modal-top {
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background: var(--accent);
+      color: white;
+      font-weight: bold;
+    }
+
+    .modal-btn {
+      background: white;
+      color: #222;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s;
+    }
+
+    .modal-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 100px;
+      padding: 40px 20px;
+      background: rgba(0,0,0,0.05);
+      text-align: center;
+      font-size: 16px;
+    }
+
+    body.dark footer {
+      background: rgba(255,255,255,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo" style="font-size: 24px; font-weight: bold;">AMMAR</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="Portofolio_page.html">Portfolio</a>
+    </nav>
+    <button class="toggle-btn" id="modeBtn" onclick="toggleMode()">Dark Mode</button>
+  </header>
+
+  <h1>Welcome to My Composition & Rhetoric Portfolio</h1>
+  <p class="subtitle">Explore my essays, analysis, research work, and revised writing.</p>
+
+  <div class="content-section">
+    <div class="card" onclick="openPreview('Narrative_Essay.pdf')">
+      <h3>📝 Narrative Essay</h3>
+      <p>A personal storytelling piece reflecting experience, growth, and self-discovery.</p>
+    </div>
+
+    <div class="card" onclick="openPreview('Visual_Analysis.pdf')">
+      <h3>🎨 Visual Analysis Essay</h3>
+      <p>An analytical breakdown of visual rhetoric, composition, and meaning.</p>
+    </div>
+
+    <div class="card" onclick="openPreview('Research_Paper.pdf')">
+      <h3>📚 Research Paper</h3>
+      <p>A formal academic research project supported by credible sources and analysis.</p>
+    </div>
+
+    <div class="card" onclick="openPreview('Revised_Version.pdf')">
+      <h3>✏️ Revised Essay Version</h3>
+      <p>A refined, improved version of one of my major assignments, demonstrating growth.</p>
+    </div>
+  </div>
+
+  <div id="modalContainer">
+    <div class="modal-box">
+      <div class="modal-top">
+        <span id="modalTitle">Preview</span>
+        <div>
+          <button class="modal-btn" id="downloadBtn">Download</button>
+          <button class="modal-btn" onclick="closePreview()">Exit</button>
+        </div>
+      </div>
+      <iframe id="pdfViewer"></iframe>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Ammar — All Rights Reserved  
+    <br><br>
+    <a href="index.html">Home</a> •
+    <a href="Portofolio_page.html">Portfolio</a>
+  </footer>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("dark");
+      const btn = document.getElementById("modeBtn");
+      btn.textContent = document.body.classList.contains("dark") ? "Light Mode" : "Dark Mode";
+    }
+
+    function openPreview(fileName) {
+      const modal = document.getElementById("modalContainer");
+      document.getElementById("pdfViewer").src = fileName;
+      document.getElementById("downloadBtn").onclick = () => { window.location.href = fileName; };
+      modal.classList.add("show");
+
+      const titles = {
+        "Narrative_Essay.pdf": "Narrative Essay",
+        "Visual_Analysis.pdf": "Visual Analysis Essay",
+        "Research_Paper.pdf": "Research Paper",
+        "Revised_Version.pdf": "Revised Essay Version"
+      };
+      document.getElementById("modalTitle").textContent = titles[fileName];
+    }
+
+    function closePreview() {
+      const modal = document.getElementById("modalContainer");
+      modal.classList.remove("show");
+      document.getElementById("pdfViewer").src = "";
+    }
+  </script>
+
+</body>
+</html>

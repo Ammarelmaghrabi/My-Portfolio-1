@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ammar – Home</title>
+<style>
+:root {
+  --light-bg: #f5f5f5;
+  --light-text: #111;
+  --dark-bg: #121212;
+  --dark-text: #f1f1f1;
+  --accent: #4b9fe1;
+  --card-bg-light: #ffffff;
+  --card-bg-dark: #1e1e1e;
+  --divider-color-light: rgba(0,0,0,0.05);
+  --divider-color-dark: rgba(255,255,255,0.1);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #f5f5f5, #eaeaea);
+  color: var(--light-text);
+  transition: 0.3s;
+  overflow-x: hidden;
+}
+
+body.dark {
+  background: linear-gradient(to bottom, #121212, #1b1b1b);
+  color: var(--dark-text);
+}
+
+header {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(6px);
+  z-index: 10;
+  background: rgba(255,255,255,0.6);
+}
+
+body.dark header { background: rgba(20,20,20,0.6); }
+
+nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+  font-size: 16px;
+  transition: 0.2s;
+}
+
+nav a:hover { color: var(--accent); }
+
+.toggle-btn {
+  padding: 10px 18px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: 0.2s;
+}
+
+.toggle-btn:hover { transform: translateY(-2px); }
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 150px 20px 100px 20px;
+  background: linear-gradient(135deg, rgba(75,159,225,0.1), rgba(75,159,225,0.05));
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background-image: url('https://www.transparenttextures.com/patterns/white-wall.png');
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.hero h1 {
+  font-size: 44px;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero h1 span.icon { font-size: 36px; }
+
+.hero p {
+  font-size: 20px;
+  opacity: 0.8;
+  margin-top: 15px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* SCROLL DOWN ARROW */
+.scroll-down {
+  display: block;
+  margin: 40px auto 0 auto;
+  width: 24px;
+  height: 24px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+  animation: bounce 1.5s infinite;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%,20%,50%,80%,100% {transform: translateY(0) rotate(-45deg);}
+  40% {transform: translateY(10px) rotate(-45deg);}
+  60% {transform: translateY(5px) rotate(-45deg);}
+}
+
+/* FADE-IN */
+.fade-in { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* ABOUT ME */
+.about { max-width: 800px; margin: 60px auto; padding: 0 20px; text-align: center; }
+.about h2 { font-size: 28px; margin-bottom: 20px; }
+.about p { font-size: 18px; line-height: 1.6; opacity: 0.85; }
+.about p span.accent { color: var(--accent); font-weight: bold; }
+
+.portfolio-btn {
+  display: inline-block;
+  margin: 30px auto 0 auto;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.25s;
+  text-decoration: none;
+}
+
+.portfolio-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* WRITING CARDS */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* CARD STYLING */
+.card {
+  background: var(--card-bg-light);
+  padding: 25px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
+}
+
+.card:hover { transform: translateY(-5px); box-shadow: 0 6px 14px rgba(0,0,0,0.2); }
+.card h3 { margin-top: 0; margin-bottom: 10px; }
+.card p { font-size: 15px; opacity: 0.8; }
+body.dark .card { background: var(--card-bg-dark); }
+
+/* BIG QUOTE */
+.quote-section {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  margin: 80px 20px;
+  opacity: 0.9;
+  line-height: 1.3;
+}
+
+/* CV CARD CENTERED */
+.cv-container {
+  display: flex;
+  justify-content: center;
+  margin: 80px 0;
+}
+
+.cv-card {
+  background: var(--card-bg-light);
+  padding: 25px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  width: 300px;
+}
+
+.cv-card:hover { transform: translateY(-5px); box-shadow: 0 6px 14px rgba(0,0,0,0.2); }
+body.dark .cv-card { background: var(--card-bg-dark); }
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 200;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.7);
+  justify-content: center; align-items: center;
+}
+
+.modal-content {
+  background: var(--card-bg-light);
+  width: 90%; max-width: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+body.dark .modal-content { background: var(--card-bg-dark); }
+.modal-content iframe { width: 100%; height: 500px; border: none; }
+
+.close-btn, .download-btn {
+  position: absolute; top: 15px;
+  padding: 8px 14px;
+  border: none; border-radius: 6px;
+  cursor: pointer; font-weight: bold; color: white;
+}
+
+.close-btn { right: 15px; background: #e74c3c; }
+.download-btn { right: 100px; background: var(--accent); }
+.close-btn:hover, .download-btn:hover { transform: translateY(-2px); }
+
+/* FOOTER */
+footer { margin-top: 80px; padding: 40px 20px; background: rgba(0,0,0,0.05); text-align: center; font-size: 16px; transition: 0.3s; }
+body.dark footer { background: rgba(255,255,255,0.05); }
+footer a { color: var(--accent); text-decoration: none; margin: 0 12px; font-weight: bold; }
+footer a:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .cards-container { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" style="font-size:24px;font-weight:bold;">AMMAR</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="Portofolio_page.html">Portfolio</a>
+  </nav>
+  <button class="toggle-btn" id="modeBtn" onclick="toggleMode()">Dark Mode</button>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <h1><span class="icon">✍️</span> Hi, I’m Ammar</h1>
+  <p>I am passionate about <span class="accent">Composition & Rhetoric</span>, exploring storytelling, visual analysis, and critical writing.</p>
+  <span class="scroll-down" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})"></span>
+</section>
+
+<div class="divider fade-in"></div>
+
+<!-- ABOUT ME -->
+<section class="about fade-in" id="about">
+  <h2>About Me</h2>
+  <p>Ammar Mohamed Taha is currently a student in HBKU majoring in Computer Engineering. He is interested in <span class="accent">AI, ML, and Math</span>. He volunteered in many events in and outside campus, including Orphan Day and helping patients in Hamad Hospital. He also worked on research to improve a project from high school. Among his hobbies is playing <span class="accent">table tennis</span>.</p>
+  <a class="portfolio-btn" href="Portofolio_page.html">Explore My Work</a>
+</section>
+
+<!-- WRITING CARDS -->
+<div class="cards-container fade-in">
+  <div class="card"><h3>Narrative Essay</h3><p>Creative storytelling, first draft through polished final version.</p></div>
+  <div class="card"><h3>Visual Analysis</h3><p>Breaking down visuals and understanding composition & meaning.</p></div>
+  <div class="card"><h3>Research Paper</h3><p>Analytical writing supported by evidence and research skills.</p></div>
+  <div class="card"><h3>Revised Work</h3><p>Refined and improved drafts showing growth in writing.</p></div>
+</div>
+
+<!-- BIG QUOTE -->
+<div class="quote-section fade-in">"Every draft is a step closer to perfection."</div>
+
+<!-- CV CARD -->
+<div class="cv-container fade-in">
+  <div class="cv-card">
+    <h3>Curriculum Vitae</h3>
+    <p>Preview and download my CV.</p>
+    <button onclick="openModal('Ammar\'s_CV.pdf')" class="toggle-btn">Preview CV</button>
+  </div>
+</div>
+
+<!-- CV MODAL -->
+<div class="modal" id="cvModal">
+  <div class="modal-content">
+    <button class="download-btn" id="downloadBtn">Download</button>
+    <button class="close-btn" onclick="closeModal()">Exit</button>
+    <iframe src="" id="modalIframe"></iframe>
+  </div>
+</div>
+
+<footer>
+  © 2025 Ammar — All Rights Reserved  
+  <br><br>
+  <a href="index.html">Home</a> •
+  <a href="Portofolio_page.html">Portfolio</a>
+</footer>
+
+<script>
+function toggleMode() {
+  document.body.classList.toggle("dark");
+  document.getElementById("modeBtn").textContent = document.body.classList.contains("dark") ? "Light Mode" : "Dark Mode";
+}
+
+function openModal(file) {
+  const modal = document.getElementById('cvModal');
+  const iframe = document.getElementById('modalIframe');
+  const download = document.getElementById('downloadBtn');
+  iframe.src = file;
+  download.onclick = () => { window.open(file, '_blank'); };
+  modal.style.display = 'flex';
+}
+
+function closeModal() {
+  const modal = document.getElementById('cvModal');
+  const iframe = document.getElementById('modalIframe');
+  modal.style.display = 'none';
+  iframe.src = '';
+}
+
+window.onclick = function(event) {
+  if (event.target === document.getElementById('cvModal')) { closeModal(); }
+}
+
+// Fade-in sections sequentially
+const faders = document.querySelectorAll('.fade-in');
+window.addEventListener('scroll', () => {
+  faders.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) el.classList.add('visible');
+  });
+});
+
+// Trigger initial hero visible immediately
+document.querySelector('.hero').classList.add('visible');
+</script>
+</body>
+</html>
